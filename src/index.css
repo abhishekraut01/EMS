@@ -9,3 +9,11 @@
 html , body{
     background-color: #000000;
 }
+
+#taskList::-webkit-scrollbar{
+    display: none;
+}
+
+#DashboardAssignedTaskbg::-webkit-scrollbar{
+    display: none;
+}
