@@ -5,9 +5,9 @@ import EmployeeDashboard from './Components/Dashboard/EmployeeDashboard'
 export default function App() {
   return (
     <>
-    {/* <Login/> */}
+    <Login/>
     {/* <EmployeeDashboard/> */}
-    <AdminDashboard/>
+    {/* <AdminDashboard/> */}
     </>
   )
 }
