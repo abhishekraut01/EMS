@@ -66,9 +66,6 @@ const TaskList = () => {
                     </div>
                 ))
             }
-
-
-
         </div>
     )
 }

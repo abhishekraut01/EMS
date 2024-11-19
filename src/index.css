@@ -17,3 +17,7 @@ html , body{
 #DashboardAssignedTaskbg::-webkit-scrollbar{
     display: none;
 }
+
+#AdminDashboardTasksdiv::-webkit-scrollbar{
+    display: none;
+}
