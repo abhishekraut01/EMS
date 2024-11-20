@@ -1,12 +1,14 @@
 import { useState } from "react";
 
-const Login = () => {
+const Login = ({handleLogin}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    //imported handle login so that we are passing email and password to parent component
+    //user input dega and ham idhar se app component mai data pass karengey
     const handleFromSubmit =(e)=>{
         e.preventDefault();
-        console.log(`Hello guys the form is submitted usename is ${email} and password is ${password}`);
+        handleLogin(email , password)
         setEmail("")
         setPassword("")
 
