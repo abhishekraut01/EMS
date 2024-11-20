@@ -11,7 +11,6 @@ const Login = ({handleLogin}) => {
         handleLogin(email , password)
         setEmail("")
         setPassword("")
-
     }
 
   return (
