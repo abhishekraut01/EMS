@@ -9,7 +9,7 @@ const FaildTask = ({data}) => {
     <p className="mt-3">{data.tasks[2].taskDescription}</p>
     <div className="flex justify-between mt-10">
         <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-            Failed
+            Failed 
         </button>
 
     </div>
