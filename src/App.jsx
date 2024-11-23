@@ -5,7 +5,7 @@ import EmployeeDashboard from './Components/Dashboard/EmployeeDashboard'
 import { AuthContext } from './Context/AuthContext'
 
 export default function App() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState("")
   const [LoggedInUserData, setLoggedInUserData] = useState(null)
   const Authdata = useContext(AuthContext)
 
@@ -16,22 +16,25 @@ export default function App() {
     if (loggedInUser) {
       const userData = JSON.parse(loggedInUser)
       setUser(userData.role)
-      setLoggedInUserData(userData.data)
+      setLoggedInUserData(userData.dataOfEmployee)
+    } else {
+      setUser(null);
     }
+
   }, [])
 
 
   const handleLogin = (username, password) => {
-    if (Authdata.user && Authdata.user.admin.find((e) => username == e.email && password == e.password)) {
+    if (Authdata.userData && Authdata.userData.admin.find((e) => username == e.email && password == e.password)) {
       setUser('admin')
       //this will add the loggedInUser in local storage and as local storage cant store the objects we need to convert then in json and we use JSON.stringify
-      localStorage.setItem("loggedInUser", JSON.stringify({ role: " admin" }))
-    } else if (Authdata.user) {
-      const employee = Authdata.user.employee.find((e) => username == e.email && password == e.password)
+      localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin" }))
+    } else if (Authdata.userData) {
+      const employee = Authdata.userData.employee.find((e) => username == e.email && password == e.password)
       if (employee) {
         setUser("employee")
         setLoggedInUserData(employee)
-        localStorage.setItem("loggedInUser", JSON.stringify({ role: " employee" , data: employee }))
+        localStorage.setItem("loggedInUser", JSON.stringify({ role: "employee", dataOfEmployee: employee }))
       }
 
     } else {
@@ -42,16 +45,9 @@ export default function App() {
 
   return (
     <>
-
-      {
-        !user ? <Login handleLogin={handleLogin} /> : null
-      }
-      {
-        user == 'admin' ? <AdminDashboard data={LoggedInUserData}/> : null
-      }
-      {
-        user == 'employee' ? <EmployeeDashboard data={LoggedInUserData} /> : null
-      }
+      {user === null && <Login handleLogin={handleLogin} />}
+      {user === "admin" && <AdminDashboard data={LoggedInUserData} />}
+      {user === "employee" && <EmployeeDashboard data={LoggedInUserData} />}
     </>
   )
 }
