@@ -1,9 +1,9 @@
 import AdminDashboardTasks from './AdminDashboardTasks'
 import DashboardHeader from './DashboardHeader'
-const AdminDashboard = () => {
+const AdminDashboard = ({data}) => {
     return (
         <div className='h-screen w-full p-10'>
-            <DashboardHeader />
+            <DashboardHeader data={data} />
 
             <div className='overflow-x-auto flex-wrap flex justify-between bg-[#1C1C1C] w-full mt-5 rounded-md px-8 py-3 '>
                 <div>

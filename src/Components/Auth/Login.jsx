@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Login = ({handleLogin}) => {
+const Login = ({handleLogin}) => { //handle login came from the app component
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
