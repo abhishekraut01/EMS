@@ -11,7 +11,6 @@ export default function App() {
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("loggedInUser")
-
     //we get the logged in user from local storage and setLoggedInUserData so that we dont get logged out when we refresh
     if (loggedInUser) {
       const userData = JSON.parse(loggedInUser)
@@ -23,6 +22,10 @@ export default function App() {
 
   }, [])
 
+  const handleLogout = () => {
+    localStorage.setItem('loggedInUser', "")
+    setUser("")
+  }
 
   const handleLogin = (username, password) => {
     if (Authdata.userData && Authdata.userData.admin.find((e) => username == e.email && password == e.password)) {
@@ -45,9 +48,9 @@ export default function App() {
 
   return (
     <>
-      {user === null && <Login handleLogin={handleLogin} />}
-      {user === "admin" && <AdminDashboard data={LoggedInUserData} />}
-      {user === "employee" && <EmployeeDashboard data={LoggedInUserData} />}
+      {!user ? <Login handleLogin={handleLogin} />  : ""}
+      {user === "admin" && <AdminDashboard data={LoggedInUserData} handleLogout ={handleLogout} />}
+      {user === "employee" && <EmployeeDashboard data={LoggedInUserData} handleLogout ={handleLogout} />}
     </>
   )
 }
