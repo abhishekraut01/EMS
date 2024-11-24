@@ -25,26 +25,34 @@ const AdminCreateTask = () => {
       taskDescription,
     };
 
+    //we took the employee array of object from local storage and append our new task created for the employee
     setCreatedTask(newTask);
-    const data = JSON.parse(localStorage.getItem("employee"))
+    const data = JSON.parse(localStorage.getItem("employees"))
+    console.log(data);
 
-    data.array.forEach(element => {
-        if(element.firstName == AssignTo){
-            element.tasks.push(newTask)
-        }
+    data.forEach(employee => {
+      if(employee.firstName === AssignTo){
+        employee.tasks.push(CreatedTask)
+      }
     });
+
+    localStorage.setItem("employees", JSON.stringify(data));
+
     // Reset form fields
     setTaskTitle("");
     setTaskDate("");
     setAssignTo("");
     setCategory("");
     setTaskDescription("");
+    console.log('button clicked');
   };
 
   return (
     <div className="overflow-x-auto flex-wrap flex justify-between bg-[#1C1C1C] w-full mt-5 rounded-md px-8 py-3">
       <form
-        onSubmit={handleSubmit}
+        onSubmit={(e) => {
+          handleSubmit(e)
+        }}
         className="flex flex-wrap justify-between w-full"
       >
         <div>
