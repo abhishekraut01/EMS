@@ -7,13 +7,15 @@ dotenv.config({
 import dbConnection from './src/db/dbConnection.js';
 import app from './app.js';
 
-
-dbConnection().then(() => {
+dbConnection()
+  .then(() => {
     app.listen(process.env.PORT, () => {
-        console.log(`Server started on PORT ${process.env.PORT}`);
+      console.log(`Server started on PORT ${process.env.PORT}`);
     });
-})
-.catch((err)=>{
-    console.error(`Something went wrong while connecting to the database: ${err.message}`);
-    process.exit(1); 
-})
+  })
+  .catch((err) => {
+    console.error(
+      `Something went wrong while connecting to the database: ${err.message}`
+    );
+    process.exit(1);
+  });
